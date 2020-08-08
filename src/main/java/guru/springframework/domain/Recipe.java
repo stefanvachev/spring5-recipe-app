@@ -1,12 +1,14 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Some RDBMS support Sequence, Auto Increment, Oracle older versions before 12 do not, but after 12 orcale should.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Some RDBMS support Sequence, Auto Increment, Oracle older versions before 12 do not, but after 12 orcale should.
     private Long id;
 
     private String description;
@@ -16,6 +18,10 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
+
+    //mappedBy gives the property on the child class by which the relationship is mapped
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     @Lob //Will create blob  for non String types, if type is string, then clob
     private Byte[] image;
@@ -29,6 +35,14 @@ public class Recipe {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getDescription() {
