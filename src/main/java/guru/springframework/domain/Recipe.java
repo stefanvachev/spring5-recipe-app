@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,11 +18,13 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
     private String directions;
 
     //mappedBy gives the property on the child class by which the relationship is mapped
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob //Will create blob  for non String types, if type is string, then clob
     private Byte[] image;
@@ -40,7 +43,7 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"), //from this side of the relationship, this is the field
             inverseJoinColumns = @JoinColumn(name = "category_id") //from the other side of the relationship, this is the column.
     )
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Set<Category> getCategories() {
         return categories;

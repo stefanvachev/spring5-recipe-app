@@ -7,9 +7,17 @@
 <body>
 
 <h1>My Recipes</h1>
-<p>Test Live Reload</p>
-<p>Test Live Reload - how fast does it work</p>
-Try some other products too, this is a bit sluggish
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Description</td>
+    </tr>
+</table>
 
 
 </body>
