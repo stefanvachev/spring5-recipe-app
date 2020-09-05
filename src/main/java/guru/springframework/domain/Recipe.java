@@ -69,6 +69,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -139,6 +145,9 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+        this.notes.setRecipe(this);
+        //Allows to automatically set the bidirectional relationship
+        //so we do not need to do this manually every time we set notes to recipes
     }
 
     public Difficulty getDifficulty() {

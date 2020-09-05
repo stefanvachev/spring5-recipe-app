@@ -77,15 +77,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "4 Serve: Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
 
         Notes perfectGuacNotes = new Notes();
-        perfectGuacNotes.setRecipe(perfectGuacamole);
         perfectGuacNotes.setRecipeNotes("Simple Guacamole: The simplest version of guacamole is just mashed avocados with salt. Don’t let the lack of availability of other ingredients stop you from making guacamole.\n" +
                 "Quick guacamole: For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
                 "Don’t have enough avocados? To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.");
         perfectGuacamole.setNotes(perfectGuacNotes);
 
-        perfectGuacamole.getIngredients().add(new Ingredient("Ripe Avocados", new BigDecimal(2), eachUom, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("Kosher Salt", new BigDecimal(".5"), teaSpoonUom, perfectGuacamole));
-        perfectGuacamole.getIngredients().add(new Ingredient("fresh lime juice", new BigDecimal(2), tableSpoonUom, perfectGuacamole));
+        perfectGuacamole.addIngredient(new Ingredient("Ripe Avocados", new BigDecimal(2), eachUom))
+                        .addIngredient(new Ingredient("Kosher Salt", new BigDecimal(".5"), teaSpoonUom ))
+                        .addIngredient(new Ingredient("fresh lime juice", new BigDecimal(2), tableSpoonUom));
 
         perfectGuacamole.getCategories().add(americanCategoryOptional.get());
         perfectGuacamole.getCategories().add(mexicanCategoryOptional.get());
@@ -115,7 +114,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.");
 
         Notes tacoNotes = new Notes();
-        tacoNotes.setRecipe(tacoRecipe);
         tacoNotes.setRecipeNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n" +
                 "\n" +
                 "Any and every kind of leftover can go inside a warm tortilla, usually with a healthy dose of pickled jalapenos. I can always sniff out a late-night snacker when the aroma of tortillas heating in a hot pan on the stove comes wafting through the house.\n" +
@@ -137,10 +135,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n");
         tacoRecipe.setNotes(tacoNotes);
 
-        tacoRecipe.getIngredients().add(new Ingredient("Ancho Chili Powder", new BigDecimal(2), tableSpoonUom, tacoRecipe));
-        tacoRecipe.getIngredients().add(new Ingredient("dried oregano", new BigDecimal(1), teaSpoonUom, tacoRecipe));
-        tacoRecipe.getIngredients().add(new Ingredient("dried cumin", new BigDecimal(1), teaSpoonUom, tacoRecipe));
-        tacoRecipe.getIngredients().add(new Ingredient("sugar", new BigDecimal(1), teaSpoonUom, tacoRecipe));
+        tacoRecipe.addIngredient(new Ingredient("Ancho Chili Powder", new BigDecimal(2), tableSpoonUom));
+        tacoRecipe.addIngredient(new Ingredient("dried oregano", new BigDecimal(1), teaSpoonUom));
+        tacoRecipe.addIngredient(new Ingredient("dried cumin", new BigDecimal(1), teaSpoonUom));
+        tacoRecipe.addIngredient(new Ingredient("sugar", new BigDecimal(1), teaSpoonUom));
 
         tacoRecipe.getCategories().add(americanCategoryOptional.get());
         tacoRecipe.getCategories().add(mexicanCategoryOptional.get());
